@@ -1,119 +1,65 @@
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        
-        <title>Book Catalog</title>
-    </head>
-
-    <body>
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-info">
-            <a class="navbar-brand" href="home.html">Padhlo Junction📚</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padhlo Junction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://images.unsplash.com/photo-1527908290749-8c9518e0db09?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fHx8fA%3D%3D') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .btn-custom {
+            font-size: 24px;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            border-radius: 10px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .btn-custom:hover {
+            background: rgba(255, 255, 255, 0.7);
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Padhlo Junction📚</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about.html">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.html">contact</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-
-        <div id="div-search" class="container" style="margin-bottom:20px; padding-top:20px;">
-            <h3>Search Books</h3>
-            <form action="#">
-                <input type="text" id="input-search-id" class="form-control" style="width:25%;display:inline;" placeholder="Book Id">
-                <input type="text" id="input-search-genre" class="form-control" style="width:25%;display:inline;" placeholder="Genre">
-                <input type="text" id="input-search-price-min" class="form-control" style="width:12%;display:inline;" placeholder="Price Min">
-                <input type="text" id="input-search-price-max" class="form-control" style="width:12%;display:inline;" placeholder="Price Max">
-                <input type="text" id="input-search-author" class="form-control" style="width:25%;display:inline;" placeholder="Author">
-                <input type="text" id="input-search-year" class="form-control" style="width:25%;display:inline;" placeholder="Publication Year">
-                <button id="btn-search" class="btn" type="submit">Search</button>
-            </form>
-        </div>
-
-        <div id="div-examined-book"  class="container" style="margin-bottom:20px">
-            <h3>Examined Book</h3>
-            <ul id="list-examined-book" class="list-group">
-                <li class="list-group-item">Book Id: <span id="book-id"></span></li>
-                <li class="list-group-item">Price: <span id="book-price"></span></li>
-                <li class="list-group-item">Genre: <span id="book-genre"></span></li>
-                <li class="list-group-item">Author: <span id="book-author"></span></li>
-                <li class="list-group-item">Publication Year: <span id="book-year"></span></li>
-            </ul>
-        </div>
-
-
-        <div  class="container" style="margin-bottom:20px">
-            <h3>List of Similar Books</h3>
-            <table id="table-similar-books" class="table">
-                <thead>
-                    <th>BookId</th>
-                    <th>Genre</th>
-                    <th>Price</th>
-                    <th>Author</th>
-                    <th>Publication Year</th>
-                    <th>Examine</th>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-
-        <div  class="container" style="margin-bottom:20px">
-
-              
-            <h3>List of All Books</h3>
-
-            <div class="col-6">Records per page &nbsp;
-            <select class="form-select" id="records_size" aria-label="Default select example">
-                <option value="5" selected>5</option>
-                <option value="10">10</option>
-                <option value="25">25</option>
-              </select>
-            </div>
-              <br>
-
-            <table id="table-all-books" class="table">
-                <thead>
-                    <th>BookId</th>
-                    <th>Genre</th>
-                    <th>Price</th>
-                    <th>Author</th>
-                    <th>Publication Year</th>
-                    <th>Examine</th>
-                </thead>
-                <tbody></tbody>
-            </table>
-
-
-            <nav aria-label="Page navigation">
-                <ul class="pagination" id="pagination">
-                    <!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
                 </ul>
-            </nav>
-
-                <div class="col">
-                    <div id="page-details">  </div>
-                </div>
-
+            </div>
         </div>
-        
-        <script src="app.js"></script>
-    </body>
+    </nav>
+    <a href="home.html" class="btn btn-custom">Enter Library</a>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
-
